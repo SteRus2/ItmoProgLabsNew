@@ -50,4 +50,8 @@ class Barometer : OptionShowable, Bowable{
         return name
     }
 
+    override fun toString(): String {
+        return "{%s - name: %s, place: %s, attr: %s, gender: %s}".format(javaClass, name, place.toString(), attrs.toString(), gender.toString())
+    }
+
 }

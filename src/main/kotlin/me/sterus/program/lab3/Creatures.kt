@@ -33,4 +33,8 @@ open class Creatures(val name: String, private val count: Count = Count.MANY) : 
         return if (count == Count.MANY) Pronouns.PRONOUN1 else Pronouns.PRONOUN2
     }
 
+    override fun toString(): String {
+        return "{%s - name: %s, count: %s}".format(javaClass, name, count.toString())
+    }
+
 }

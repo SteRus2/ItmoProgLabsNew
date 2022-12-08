@@ -8,4 +8,9 @@ class Lawn(name: String, private val place: Place, attrs: ArrayList<Attribute> =
     fun spreadOut(location: PlaceAndDirections) {
         println("Лужайка (%s), %s, расстилалась по местоположению: %s, у места: %s.".format(name, getOptions(gender), location.attr(), place.name))
     }
+
+    override fun toString(): String {
+        return "{%s - name: %s, place: %s, attr: %s, gender: %s}".format(javaClass, name, place.toString(), attr.toString(), gender.toString())
+    }
+
 }

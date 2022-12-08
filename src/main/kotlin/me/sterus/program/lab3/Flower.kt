@@ -22,4 +22,8 @@ class Flower(val name: String, private val options: List<FlowerAttr>) : OptionSh
     override fun getDef(): String {
         return getDescription()
     }
+
+    override fun toString(): String {
+        return "{%s - name: %s, options: %s".format(javaClass, name, options.toString())
+    }
 }

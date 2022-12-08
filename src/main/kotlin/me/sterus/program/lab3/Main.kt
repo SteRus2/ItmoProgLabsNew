@@ -1,6 +1,7 @@
 package me.sterus.program.lab3
 
 import me.sterus.program.lab3.attributes.*
+import kotlin.math.sign
 
 fun main(){
     val island = Island("Остров")
@@ -28,5 +29,13 @@ fun main(){
     hem.pickUpFlowers(forest)
     hem.missBeaut()
     hem.count(Flower("Лепестки-тычинки", listOf(FlowerAttr.BEAUTIFUL)))
-    hem.mutter("Это будет номер двести девятнадцать в моем гербарии");
+    hem.mutter("Это будет номер двести девятнадцать в моем гербарии")
+    val pillar1 = Pillar("1234", forest, ArrayList(listOf(Size.BIG, Size.HIGH)))
+    val pillar2 = Pillar("1234", forest, ArrayList(listOf(Size.BIG, Size.HIGH)))
+    println(pillar1.hashCode())
+    println(pillar2.hashCode())
+    println(pillar1.equals(pillar2))
+    println(pillar1.toString())
+    println(forest.toString())
+    println(hem.toString())
 }

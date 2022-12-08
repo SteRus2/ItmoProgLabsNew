@@ -6,4 +6,7 @@ class Forest(name: String) : Place(name) {
         this.flowerList.addAll(flowerList)
     }
 
+    override fun toString(): String {
+        return "{%s - name: %s, attr: %s, gender: %s, flowerList: %s}".format(javaClass, name, attr.toString(), gender.toString(), flowerList.toString())
+    }
 }

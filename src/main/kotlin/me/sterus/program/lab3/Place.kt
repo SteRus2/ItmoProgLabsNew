@@ -4,8 +4,7 @@ import me.sterus.program.lab3.attributes.Attribute
 import me.sterus.program.lab3.attributes.GenderCase
 import java.lang.StringBuilder
 
-abstract class Place(val name: String, protected val gender: GenderCase = GenderCase.MALE) : OptionShowable {
-    private val attr = ArrayList<Attribute>()
+abstract class Place(val name: String, protected val gender: GenderCase = GenderCase.MALE, val attr: ArrayList<Attribute> = ArrayList()) : OptionShowable {
     constructor(name: String, attr: ArrayList<Attribute>) : this(name) {
         this.attr.addAll(attr)
     }
@@ -26,5 +25,9 @@ abstract class Place(val name: String, protected val gender: GenderCase = Gender
 
     fun getOptions(gender: GenderCase): String {
         return gender.attr() + getDescription()
+    }
+
+    override fun toString(): String {
+        return "{%s - name: %s, gender: %s, attr: %s}".format(javaClass, name, gender.toString(), attr.toString())
     }
 }
