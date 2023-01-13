@@ -1,11 +1,15 @@
-package me.sterus.program.lab3
+package me.sterus.program.lab3.entities
 
+import me.sterus.program.lab3.Bowable
+import me.sterus.program.lab3.OptionShowable
 import me.sterus.program.lab3.attributes.Attribute
 import me.sterus.program.lab3.attributes.GenderCase
+import me.sterus.program.lab3.exceptions.NoHookException
 import java.lang.StringBuilder
+import kotlin.jvm.Throws
 
-class Barometer : OptionShowable, Bowable{
-    val name: String
+class Barometer : OptionShowable, Bowable {
+    private val name: String
     private val attrs: ArrayList<Attribute>
     private val gender: GenderCase = GenderCase.MALE
     private var place: Pillar? = null
@@ -41,9 +45,13 @@ class Barometer : OptionShowable, Bowable{
         description.delete(description.length - 2, description.length)
         return description.toString()
     }
+    @Throws(NoHookException::class)
     fun bangle(pillar: Pillar){
+        if (pillar.hook == null){
+            throw NoHookException(pillar)
+        }
         this.place = pillar
-        println("Барометр (%s), %s, повис на столбе %s".format(name, gender.attr() + getDescription(), pillar.name))
+        println("Барометр (%s), %s, повис на столбе %s".format(name, gender.attr() + getDescription(), pillar.getName()))
     }
 
     override fun makeDefinition(): String {

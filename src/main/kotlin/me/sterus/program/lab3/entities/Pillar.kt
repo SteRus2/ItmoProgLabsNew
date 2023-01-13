@@ -1,38 +1,58 @@
-package me.sterus.program.lab3
+package me.sterus.program.lab3.entities
 
+import me.sterus.program.lab3.OptionShowable
 import me.sterus.program.lab3.attributes.Attribute
 import me.sterus.program.lab3.attributes.GenderCase
 import me.sterus.program.lab3.attributes.PlaceAndDirections
+import me.sterus.program.lab3.attributes.Size
+import me.sterus.program.lab3.places.Place
 import java.lang.StringBuilder
-import java.util.Collections
 import java.util.Objects
 
 class Pillar : OptionShowable {
-    val name: String
+    private val name: String
     private val place: Place
     private val attrs: ArrayList<Attribute>
     private val gender: GenderCase = GenderCase.MALE
+    var hook: Hook? = null
+
+    constructor(name: String, place: Place, attrs : ArrayList<Attribute>, hookNumber: Int){
+        this.name = name
+        this.place = place
+        this.attrs = attrs
+        this.hook = Hook(hookNumber, Size.BIG)
+    }
     constructor(name: String, place: Place, attrs : ArrayList<Attribute>){
         this.name = name
         this.place = place
         this.attrs = attrs
+
+    }
+    constructor(name: String, place: Place, hookNumber: Int){
+        this.name = name
+        this.place = place
+        attrs = ArrayList()
+        this.hook = Hook(hookNumber, Size.BIG)
     }
     constructor(name: String, place: Place){
         this.name = name
         this.place = place
         attrs = ArrayList()
     }
+    fun getName() = name
 
     override fun getDescription() : String {
+        val description = StringBuilder()
+
         if (this.attrs.isEmpty()){
             return "Нет атрибутов"
         }
-        val description = StringBuilder()
-        for(i in this.attrs){
+        for (i in this.attrs) {
             description.append(i.attr()).append(", ")
         }
         description.delete(description.length - 2, description.length)
         return description.toString()
+
     }
 
     fun stay(direct: PlaceAndDirections){
@@ -52,9 +72,14 @@ class Pillar : OptionShowable {
         if (other == null) return false
         if (javaClass != other.javaClass) return false
         val otherObject = other as Pillar
-        return this.name.equals(otherObject.name)
-                && this.attrs.equals(otherObject.attrs)
-                && this.gender.equals(otherObject.gender)
+        return this.name == otherObject.name
+                && this.attrs == otherObject.attrs
+                && this.gender == otherObject.gender
     }
 
+    inner class Hook(val num: Int, val size: Size){
+        fun printOwner(){
+            println("Крюк под номером $num на столбе: $name")
+        }
+    }
 }

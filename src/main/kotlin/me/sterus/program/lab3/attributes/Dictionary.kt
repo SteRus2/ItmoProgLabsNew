@@ -1,6 +1,5 @@
-package me.sterus.program.lab3
+package me.sterus.program.lab3.attributes
 
-import me.sterus.program.lab3.attributes.Count
 import java.util.ArrayList
 
 object Dictionary{

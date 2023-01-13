@@ -1,4 +1,4 @@
-package me.sterus.program.lab3
+package me.sterus.program.lab3.places
 
 import me.sterus.program.lab3.attributes.Attribute
 
